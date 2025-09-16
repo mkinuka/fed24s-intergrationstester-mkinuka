@@ -1,6 +1,6 @@
 import { IMovie } from "../../models/Movie";
 
-const mockMovieData: IMovie[]  = [
+export const mockMovieData: IMovie[]  = [
     {
         "Title": "Star Wars: Episode IV - A New Hope",
         "Year": "1977",
