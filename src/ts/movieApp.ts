@@ -1,3 +1,4 @@
+import { movieSort } from "./functions";
 import { IMovie } from "./models/Movie";
 import { getData } from "./services/movieService";
 
@@ -58,3 +59,29 @@ export const displayNoResult = (container: HTMLDivElement) => {
 
   container.appendChild(noMessage);
 };
+
+export const sortMoviesDesc = document.getElementById(
+  "sort"
+) as HTMLButtonElement;
+sortMoviesDesc.addEventListener("click", () => {
+  const container = document.getElementById(
+    "movie-container"
+  ) as HTMLDivElement;
+  container.innerHTML = "";
+  movieSort(movies, true);
+
+  createHtml(movies, container);
+});
+
+export const sortMoviesInc = document.getElementById(
+  "sortInc"
+) as HTMLButtonElement;
+sortMoviesInc.addEventListener("click", () => {
+  const container = document.getElementById(
+    "movie-container"
+  ) as HTMLDivElement;
+  container.innerHTML = "";
+  movieSort(movies, false);
+
+  createHtml(movies, container);
+});
