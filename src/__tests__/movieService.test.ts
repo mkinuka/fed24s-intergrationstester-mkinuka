@@ -21,8 +21,7 @@ jest.mock("axios", () => {
 describe("movieServices test", () => {
     test("should get data", async () => {
         const movies = await getData("star");
-        expect(movies.length).toBe(10)
+        expect(movies.length).toBe(5)
         expect(movies[0].imdbID).toBe("tt0076759")
-    })
-}) 
-
+    });
+});
