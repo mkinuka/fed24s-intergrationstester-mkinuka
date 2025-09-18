@@ -10,6 +10,9 @@ export const init = () => {
     e.preventDefault();
     handleSubmit();
   });
+
+  sortMoviesInc();
+  sortMoviesDesc();
 };
 
 export async function handleSubmit() {
@@ -26,7 +29,7 @@ export async function handleSubmit() {
 
     if (movies.length > 0) {
       createHtml(movies, container);
-      console.log(movies)
+      console.log(movies);
     } else {
       displayNoResult(container);
     }
@@ -61,28 +64,34 @@ export const displayNoResult = (container: HTMLDivElement) => {
   container.appendChild(noMessage);
 };
 
-export const sortMoviesDesc = document.getElementById(
-  "sort"
-) as HTMLButtonElement;
-sortMoviesDesc.addEventListener("click", () => {
-  const container = document.getElementById(
-    "movie-container"
-  ) as HTMLDivElement;
-  container.innerHTML = "";
-  movieSort(movies, true);
+export const sortMoviesInc = () => {
+  const sortMoviesIncButton = document.getElementById(
+    "sortInc"
+  ) as HTMLButtonElement;
+  if (!sortMoviesIncButton) return;
+  sortMoviesIncButton.addEventListener("click", () => {
+    const container = document.getElementById(
+      "movie-container"
+    ) as HTMLDivElement;
+    container.innerHTML = "";
+    movieSort(movies, false);
+    console.log(movies);
+    createHtml(movies, container);
+  });
+};
 
-  createHtml(movies, container);
-});
-
-export const sortMoviesInc = document.getElementById(
-  "sortInc"
-) as HTMLButtonElement;
-sortMoviesInc.addEventListener("click", () => {
-  const container = document.getElementById(
-    "movie-container"
-  ) as HTMLDivElement;
-  container.innerHTML = "";
-  movieSort(movies, false);
-
-  createHtml(movies, container);
-});
+export const sortMoviesDesc = () => {
+  const sortMoviesDescButton = document.getElementById(
+    "sort"
+  ) as HTMLButtonElement;
+  if (!sortMoviesDescButton) return;
+  sortMoviesDescButton.addEventListener("click", () => {
+    const container = document.getElementById(
+      "movie-container"
+    ) as HTMLDivElement;
+    container.innerHTML = "";
+    movieSort(movies, true);
+    console.log(movies);
+    createHtml(movies, container);
+  });
+};
